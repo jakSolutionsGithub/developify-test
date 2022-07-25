@@ -1,0 +1,28 @@
+@page "/contact-us"
+@model client.Pages.Contact
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <form method="post">
+        <div>
+            <label>Name</label>
+            <input type="text" asp-for="ContactModel.FullName" placeholder="Full name">
+            <span asp-validation-for="ContactModel.FullName" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="email" asp-for="ContactModel.Email" placeholder="info@developify.be">
+            <span asp-validation-for="ContactModel.Email" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Message</label>
+            <textarea asp-for="ContactModel.Message" cols="30" rows="10"></textarea>
+            <span asp-validation-for="ContactModel.Message" class="text-danger"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>

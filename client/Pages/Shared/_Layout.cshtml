@@ -1,0 +1,87 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor Accessor
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<!DOCTYPE html>
+<html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Developify</title>
+    <link rel="stylesheet" href="~/css/reset.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+</head>
+
+<body>
+    <img src="/img/chevron-left.svg" alt="" class="chevron chevron-left">
+    <img src="/img/chevron-right.svg" alt="" class="chevron chevron-right">
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a asp-area="" asp-page="/">
+                    <img src="/img/logo-developify-white.png" alt="Logo Developify">
+                </a>
+            </div>
+            <ul class="navbar-nav-left">
+                <li><a class="@(Accessor.HttpContext.Request.Path.Value == "/" ? "li-active" : "" )" asp-area=""
+                        asp-page="Index">@localizer["Home"]</a></li>
+                <li><a class="@(Accessor.HttpContext.Request.Path.Value == "/services" ? "li-active" : "" )" asp-area=""
+                        asp-page="/Services">Services</a></li>
+                <li><a class="@(Accessor.HttpContext.Request.Path.Value == "/Portfolio" ? "li-active" : "" )"
+                        asp-area="" asp-page="/Portfolio">Portfolio</a></li>
+                <li><a class="@(Accessor.HttpContext.Request.Path.Value == "/contact-us" ? "li-active" : "" )"
+                        asp-area="" asp-page="/Contact">Contact</a></li>
+            </ul>
+            <ul class="navbar-nav-right">
+                <li>
+                    <partial name="_Culture" />
+                </li>
+                <li><a href="#" class="btn-primary">Get a quote</a></li>
+            </ul>
+            <!-- Hamburger Menu -->
+            <button type="button" class="hamburger" id="menu-btn">
+                <span class="hamburger-top"></span>
+                <span class="hamburger-middle"></span>
+                <span class="hamburger-bottom"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="menu">
+        <ul class="mobile-menu-bottom">
+            <ul class="flex flex-gap-2">
+                <li><a href="#" class="btn btn-dark">Fr</a></li>
+                <li><a href="#" class="btn btn-dark">En</a></li>
+            </ul>
+            <li>
+                <a href="#" class="btn btn-dark">Home</a>
+            </li>
+            <li>
+                <a href="#" class="btn btn-dark">Services</a>
+            </li>
+            <li>
+                <a href="#" class="btn btn-dark">Portfolio</a>
+            </li>
+            <li>
+                <a href="#" class="btn btn-dark">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - Developify - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/js/navbar.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

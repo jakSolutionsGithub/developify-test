@@ -1,0 +1,29 @@
+﻿@page ""
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<section class="section__hero">
+    <div class="section__hero_container">
+        <div class="section__hero_items section__hero_left">
+            <p class="hero-text">@localizer["Creating"]</p>
+            <p class="hero-subtext">@localizer["Custom"]</p>
+        </div>
+        <div class="section__hero_items section__hero_right">
+            <p class="hero-text pe-1">@localizer["Tailored"]</p>
+            <p class="hero-subtext">@localizer["Web Solutions"]</p>
+            <p>Whether you are a small business or an enterprise, there's a lot <span>Developify</span> can help you
+                with.</p>
+            <a href="#" class="btn btn-rounded"><img src="/img/arrow-top-home.png"></a>
+        </div>
+    </div>
+    <div class="section__hero_bottom section__hero_items">
+        <p>For Everyone</p>
+    </div>
+    <div class="mouse-scroll">
+        <img src="/img/mouse.png" alt="">
+        <a href="#" class="mouse-scroll-text">Scroll</a>
+    </div>
+</section>
