@@ -16,6 +16,9 @@
           },
           "fr/client.resources.dll": {
             "locale": "fr"
+          },
+          "nl/client.resources.dll": {
+            "locale": "nl"
           }
         }
       }

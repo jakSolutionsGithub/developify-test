@@ -33,3 +33,9 @@ C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\fr\c
 C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\fr\client.resources.dll
 C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\client.Resources.Pages.Shared._Layout.en.resources
 C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\client.Resources.Pages.Shared._Layout.fr.resources
+C:\Users\j0n\Documents\Developify\Developify-dotnet\client\bin\Debug\net6.0\nl\client.resources.dll
+C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\client.Resources.Pages.Contact.en.resources
+C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\client.Resources.Pages.Contact.fr.resources
+C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\client.Resources.Pages.Contact.nl.resources
+C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\nl\client.resources.cs
+C:\Users\j0n\Documents\Developify\Developify-dotnet\client\obj\Debug\net6.0\nl\client.resources.dll

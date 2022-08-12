@@ -76,7 +76,6 @@ a {
 
 .navbar-brand img {
   height: 40px;
-  aspect-ratio: 374/80;
 }
 
 .navbar-nav-left {
@@ -190,6 +189,7 @@ main {
   max-width: 1440px;
   padding: 1em;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -389,6 +389,54 @@ pe-1 {
   color: #BCC7C7;
 }
 
+.section__teamOfMulti {
+  height: 50vh;
+}
+.section__teamOfMulti__wrapper {
+  position: relative;
+  height: 100%;
+}
+.section__teamOfMulti__wrapper__img {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.section__teamOfMulti__wrapper__ellipse1 {
+  border: 1px solid blueviolet;
+  position: absolute;
+  width: 100%;
+  max-width: 750px;
+  height: auto;
+}
+.section__teamOfMulti__wrapper__ellipse2 {
+  border: 1px solid green;
+  position: absolute;
+  width: 20vh;
+  max-width: 418px;
+  height: auto;
+}
+.section__teamOfMulti__wrapper__ellipse3 {
+  border: 1px solid yellow;
+  position: absolute;
+  width: 100%;
+  max-width: 1142px;
+  height: auto;
+}
+.section__teamOfMulti__wrapper__blueIcon1 {
+  position: absolute;
+  left: -0.9%;
+  top: 38%;
+  height: 31.85px;
+  width: 31.85px;
+  border-radius: 50%;
+  background-color: #5AC1DA;
+}
+.section__teamOfMulti__wrapper__image1 {
+  position: absolute;
+  top: 34.2%;
+  left: 3%;
+}
+
 @media (max-width: 1185px) {
   .navbar li {
     font-size: 0.9em;
@@ -407,7 +455,6 @@ pe-1 {
   }
   .navbar-brand img {
     height: 28px;
-    aspect-ratio: 374/80;
   }
   .btn-primary {
     padding: 1em;

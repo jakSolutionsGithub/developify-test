@@ -3,7 +3,9 @@ using client;
 using client.Pages;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Localization.Routing;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages()
     .AddRazorPagesOptions(options =>
     {
-        options.Conventions.Add(new CultureTemplatePageRouteModelConventionn());
+        options.Conventions.AddFolderRouteModelConvention("/", model =>
+        {
+            foreach (var selector in model.Selectors)
+            {
+                selector.AttributeRouteModel.Order = -1;
+                selector.AttributeRouteModel.Template = AttributeRouteModel.CombineTemplates("{culture?}", selector.AttributeRouteModel.Template);
+            }
+        });
     });
 builder.Services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 builder.Services.Configure<RequestLocalizationOptions>(opt =>
@@ -20,13 +29,23 @@ builder.Services.Configure<RequestLocalizationOptions>(opt =>
     var supportedCultures = new List<CultureInfo>
     {
         new CultureInfo("en"),
-        new CultureInfo("fr"),
-        new CultureInfo("nl")
+        new CultureInfo("fr")
     };
-    opt.DefaultRequestCulture = new RequestCulture("en");
+    opt.DefaultRequestCulture = new RequestCulture("fr");
     opt.SupportedCultures = supportedCultures;
     opt.SupportedUICultures = supportedCultures;
-    opt.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider());
+    opt.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider()
+    {
+        RouteDataStringKey = "culture",
+        UIRouteDataStringKey = "culture",
+        Options = opt
+    });
+});
+
+builder.Services.Configure<RouteOptions>(opt =>
+{
+    opt.LowercaseUrls = true;
+    opt.AppendTrailingSlash = true;
 });
 
 builder.Services.AddHttpContextAccessor();
@@ -43,14 +62,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+var options = ((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>();
+app.UseRequestLocalization(options.Value);
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+var opt1 = new RewriteOptions().Add(new FirstLoadRewriteRule());
+app.UseRewriter(opt1);
 
-app.UseRequestLocalization(((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+app.UseAuthorization();
 
 app.MapRazorPages();
 
